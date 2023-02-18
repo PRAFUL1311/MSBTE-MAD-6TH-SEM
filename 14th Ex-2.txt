@@ -1,0 +1,76 @@
+//Activity file
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="260dp"
+        android:id="@+id/img"
+        android:layout_gravity="center"
+        android:src="@drawable/img1" />
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Image"
+        android:layout_marginTop="100dp"
+        android:onClick="Onclick"
+        android:layout_gravity="center"
+        tools:ignore="OnClick" />
+
+</LinearLayout>
+
+
+
+
+//Java file
+package com.example.a14e2;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.DataOutputStream;
+
+public class MainActivity extends AppCompatActivity {
+
+    ImageView i;
+    Button btn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        i = findViewById(R.id.img);
+        btn = findViewById(R.id.btn);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i.setImageResource(R.drawable.img2);
+                btn.setText("Back to previous image");
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        i.setImageResource(R.drawable.img1);
+                        if(btn.isPressed()){
+                            Toast.makeText(MainActivity.this, "Button Pressed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+}

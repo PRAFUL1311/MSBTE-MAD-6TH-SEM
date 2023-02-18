@@ -1,0 +1,68 @@
+//Activity file
+
+<?xml version= "1.0" encoding= "utf-8" ?>
+<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gridview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:columnWidth="90dp"
+    android:gravity="center"
+    android:horizontalSpacing="10dp"
+    android:numColumns="auto_fit"
+    android:stretchMode="columnWidth"
+    android:verticalSpacing="10dp"
+    tools:context=".MainActivity">
+
+</GridView>
+
+
+
+
+// activity_listitem.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+</LinearLayout>
+
+
+
+
+//Java file
+package com.example.a14e3;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    GridView gridview;
+    String arr[] = new String[15];
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        gridview = findViewById(R.id.gridview);
+        for (int i = 0; i < 15; i++) {
+            arr[i] = Integer.toString(i + 1);
+        }
+        ArrayAdapter<String> ad = new ArrayAdapter<String>(this, R.layout.activity_listview, R.id.btn, arr);
+        gridview.setAdapter(ad);
+    }
+}
